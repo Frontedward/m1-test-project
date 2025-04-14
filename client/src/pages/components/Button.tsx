@@ -1,13 +1,22 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 
-const Button: React.FC<any> = ({ onClick, id, disabled, children }) => {
-	const handleClick = useCallback(() => {
-		onClick(id);
-	}, []);
-	
-	return (
-		<button onClick={handleClick} disabled={disabled}>{children}</button>
-	)
+interface ButtonProps {
+	onClick: (e: React.MouseEvent) => void;
+	disabled?: boolean;
+	children: React.ReactNode;
+	className?: string;
 }
+
+const Button: React.FC<ButtonProps> = ({ onClick, disabled, children, className = 'button' }) => {
+	return (
+		<button 
+			onClick={onClick} 
+			disabled={disabled}
+			className={className}
+		>
+			{children}
+		</button>
+	);
+};
 
 export default memo(Button);

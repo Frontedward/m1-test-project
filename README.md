@@ -1,49 +1,98 @@
-# Test Project
+# React Virtual List Demo
 
-This project serves as a technical test assignment. It contains several bugs and missing behaviors that need to be identified and fixed. Your main objectives are to:
- 
-- Make the project run.
-- Fix bugs related to functionality and rendering.
-- Propose enhancements to the existing logic, code, and project (implementation optional, but a detailed description is required). 
+Демонстрационный проект с реализацией виртуализированного списка на React с использованием TypeScript.
 
-> 👉 Clone the repository to your local machine, replace the remote URL, create a new repository on your preferred platform, and push your solution there. Share the link to your completed solution. All your work, findings, and suggestions must be documented in a Markdown file named SOLUTION_REPORT.md
+## Особенности
 
-## Getting Started
+- Виртуализация списка с помощью `react-window`
+- Автоматическое обновление данных
+- Фильтрация и сортировка
+- Оптимизированный рендеринг
+- Docker-конфигурация для разработки
 
-### Prerequisites
+## Технологии
 
-- [Docker](https://www.docker.com/) installed on your machine.
+- React
+- TypeScript
+- react-window
+- react-virtualized-auto-sizer
+- Docker
+- Go (backend)
 
-### Launching the Project
+## Установка и запуск
 
-1. Clone the repository
-2. `docker compose up`
+### Предварительные требования
 
-## Features
+- Docker и Docker Compose
+- Node.js (для локальной разработки)
+- Go (для локальной разработки)
 
-### List of Items
+### Запуск через Docker
 
-- Display a list of items
-- "Set Active" button in each card to mark an item as active
-- Automatic data refresh every 10 seconds
-- Loading indicator shown during initial load or when data is unavailable
-- Items are sorted by ID
-- Search by ID
+1. Клонируйте репозиторий:
+```bash
+git clone https://github.com/Frontedward/m1-test-task.git
+cd m1-test-task
+```
 
-### Detail View
+2. Создайте файл .env (или используйте существующий):
+```
+DOCKER_CLIENT_PORT=3097
+DOCKER_SERVER_PORT=3100
+```
 
-- View detailed information about a selected item
-- Navigation between list and item detail views
-- Items with id % 3 === 0 will return a 403 error intentionally (edge case handling required)
+3. Запустите приложение:
+```bash
+docker-compose up
+```
 
-## Notes
+Приложение будет доступно по адресу: http://localhost:3097
 
-- The intentional 403 error is a known case and should not be considered a bug.
-- Feel free to comment inline or in a separate markdown file with your suggestions and reasoning.
+### Локальная разработка
 
-## Goals of the Assignment
+1. Запустите сервер:
+```bash
+cd server
+go run main.go
+```
 
-- Problem-solving and debugging skills
-- Code clarity and structure
-- Understanding of React and frontend best practices
-- Ability to propose architectural and UX improvements
+2. В другом терминале запустите клиент:
+```bash
+cd client
+npm install
+npm start
+```
+
+## Структура проекта
+
+```
+├── client/               # Frontend приложение
+│   ├── src/
+│   │   ├── pages/       # Компоненты страниц
+│   │   ├── components/  # Общие компоненты
+│   │   └── styles/      # CSS стили
+│   └── package.json
+├── server/              # Backend сервер
+│   ├── main.go
+│   └── go.mod
+├── docker-compose.yml   # Docker конфигурация
+└── .env                 # Переменные окружения
+```
+
+## Функциональность
+
+- Виртуализированный список с 5000 элементов
+- Фильтрация по ID
+- Сортировка элементов
+- Выделение активного элемента
+- Автоматическое обновление данных каждые 10 секунд
+
+## Известные ограничения
+
+- Отсутствие серверной пагинации
+- Частые обновления данных
+- Базовая типизация некоторых компонентов
+
+## Лицензия
+
+MIT
